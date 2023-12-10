@@ -37,6 +37,7 @@ public class Main {
     private static int turn = 1;
     private static int column = 0;
     private static int row = 0;
+    private static boolean validatedInfo = true;
     private static Scanner in = new Scanner(System.in);
     private static String player1 = "";
     private static String player2 = "";
@@ -63,41 +64,110 @@ public class Main {
         if(turn%2==1){
             switch (rowInput){
                 case 1:
-                    row1[columnInput-1] = 'x';
-                    break;
+                    if(row1[columnInput-1]=='-') {
+                        row1[columnInput - 1] = 'x';
+                        break;
+                    }else{
+                        System.out.println("This spot is unavailable");
+                        takePlayerInput();
+                        break;
+                    }
                 case 2:
-                    row2[columnInput-1] = 'x';
-                    break;
+                    if(row2[columnInput-1]=='-') {
+                        row2[columnInput - 1] = 'x';
+                        break;
+                    }else {
+                        System.out.println("This spot is unavailable");
+                        takePlayerInput();
+                        break;
+                    }
                 case 3:
-                    row3[columnInput-1] = 'x';
-                    break;
+                    if(row3[columnInput-1]=='-') {
+                        row3[columnInput - 1] = 'x';
+                        break;
+                    }else {
+                        System.out.println("This spot is unavailable");
+                        takePlayerInput();
+                        break;
+                    }
                 default:
-                    System.out.println("Enter valid value!");
+                    System.out.println("Please enter values between 1-3");
             }
         }else {
             switch (rowInput){
                 case 1:
-                    row1[columnInput-1] = 'o';
-                    break;
+                    if(row1[columnInput-1]=='-') {
+                        row1[columnInput - 1] = 'o';
+                        break;
+                    }else {
+                        System.out.println("This spot is unavailable");
+                        takePlayerInput();
+                        break;
+                    }
                 case 2:
-                    row2[columnInput-1] = 'o';
-                    break;
+                    if(row2[columnInput-1]=='-') {
+                        row2[columnInput - 1] = 'o';
+                        break;
+                    }else {
+                        System.out.println("This spot is unavailable");
+                        takePlayerInput();
+                        break;
+                    }
                 case 3:
-                    row3[columnInput-1] = 'o';
-                    break;
+                    if(row3[columnInput-1]=='-') {
+                        row3[columnInput - 1] = 'o';
+                        break;
+                    }else {
+                        System.out.println("This spot is unavailable");
+                        takePlayerInput();
+                        break;
+                    }
                 default:
-                    System.out.println("Enter valid value!");
+                    System.out.println("Please enter values between 1-3");
             }
 
         }
     }
 
     private static void takePlayerInput() {
-        System.out.println("Enter column: ");
-        column = in.nextInt();
-        System.out.println("Enter row: ");
-        row = in.nextInt();
-        changeGameboard(column, row);
+            System.out.println("Enter column: ");
+            column = in.nextInt();
+            System.out.println("Enter row: ");
+            row = in.nextInt();
+            changeGameboard(column, row);
+            //validateInput();
+    }
+
+    private static void validateInput() {
+        if(column>0 && column <=3 && row>0 && row <=3){
+            switch (row){
+                case 1:
+                    if(row1[column-1]=='-'){
+                        validatedInfo = true;
+                        break;
+                    }else {
+                        System.out.println("Illegal move, try again");
+                        break;
+                    }
+                case 2:
+                    if(row2[column-1]=='-'){
+                        validatedInfo = true;
+                        break;
+                    }else {
+                        System.out.println("Illegal move, try again");
+                        break;
+                    }
+                case 3:
+                    if(row3[column-1]=='x'){
+                        validatedInfo = true;
+                        break;
+                    }else {
+                        System.out.println("Illegal move, try again");
+                        break;
+                    }
+            }
+
+        }else{System.out.println("Please enter values between 1-3");}
     }
 
     private static void showWhoToPlay(int a) {
