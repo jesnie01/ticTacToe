@@ -34,13 +34,14 @@ import java.util.Scanner;
 
          */
 public class Main {
+    private static boolean winnerFound = false;
     private static int turn = 1;
     private static int column = 0;
     private static int row = 0;
-    private static boolean validatedInfo = true;
     private static Scanner in = new Scanner(System.in);
     private static String player1 = "";
     private static String player2 = "";
+    private static String winningPlayer = "";
     private static final char player1Symbol = 'x';
     private static final char player2Symbol = 'o';
     private static char[] row1 = {'-','-','-'};
@@ -55,9 +56,26 @@ public class Main {
                 showWhoToPlay(turn);
                 takePlayerInput();
                 turn++;
+                if(winnerFound){
+                    System.out.printf("Congratulations to %s !%n", winningPlayer);
+                    showWinner(turn);
+                    break;
+                }
             }
         }
         showGameBoard();
+    }
+
+    private static void showWinner(int a) {
+        if(a%2==1){
+            if(row1[0]=='x' && row1[1]=='x' && row1[2]=='x'){
+                winningPlayer = player1;
+            }
+            if (row2[0] == 'x' && row2[1]=='x' && row2[2]=='x'){
+                winningPlayer = player1;
+            }
+
+        }
     }
 
     private static void changeGameboard(int columnInput, int rowInput) {
