@@ -135,39 +135,6 @@ public class Main {
             System.out.println("Enter row: ");
             row = in.nextInt();
             changeGameboard(column, row);
-            //validateInput();
-    }
-
-    private static void validateInput() {
-        if(column>0 && column <=3 && row>0 && row <=3){
-            switch (row){
-                case 1:
-                    if(row1[column-1]=='-'){
-                        validatedInfo = true;
-                        break;
-                    }else {
-                        System.out.println("Illegal move, try again");
-                        break;
-                    }
-                case 2:
-                    if(row2[column-1]=='-'){
-                        validatedInfo = true;
-                        break;
-                    }else {
-                        System.out.println("Illegal move, try again");
-                        break;
-                    }
-                case 3:
-                    if(row3[column-1]=='x'){
-                        validatedInfo = true;
-                        break;
-                    }else {
-                        System.out.println("Illegal move, try again");
-                        break;
-                    }
-            }
-
-        }else{System.out.println("Please enter values between 1-3");}
     }
 
     private static void showWhoToPlay(int a) {
